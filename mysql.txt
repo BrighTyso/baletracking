@@ -1,0 +1,118 @@
+
+create table rights(
+id integer primary key auto_increment,
+name varchar(100) not null,
+created_at varchar(100) not null
+);
+
+
+
+
+create table if not exists sold_bales(
+id integer primary key auto_increment,
+barcode varchar(100) not null,
+mass varchar(100) not null,
+price varchar(100) not null,
+grower_num varchar(100) not null,
+sync integer not null default 0,
+created_at varchar(100) not null
+);
+
+
+create table province(
+id integer primary key auto_increment,
+name varchar(100) not null
+);
+
+
+create table floor_name(
+
+);
+
+ 
+create table floor_location(
+id integer primary key auto_increment,
+userid integer not null ,
+provinceid integer not null,
+floorid integer not null,
+created_at varchar(100) not null,
+foreign key(floorid) references floor_name(id),
+foreign key(userid) references users(id),
+foreign key(provinceid) references province(id)
+);
+
+
+
+create table surrogate(
+id integer primary key auto_increment,
+userid integer not null,
+yes_no integer not null default 0,
+created_at varchar(100) not null
+);
+
+
+create table bale_location(
+id integer primary key auto_increment,
+name varchar(100) not null,
+code integer not null
+);
+
+
+
+
+create table users(
+
+id integer primary key auto_increment,
+name varchar(100) not null,
+surname varchar(100) not null,
+rightsid integer not null,
+floor_locationid not null,
+bale_locationid integer not null,
+active integer not null,
+created_at varchar(100) not null
+
+);
+
+
+
+
+create table hold_area(
+id integer primary key auto_increment,
+userid integer not null,
+barcode varchar(100) not null,
+date_time varchar(100) not null,
+created_at varchar(100) not null
+);
+
+
+
+create table scale_area(
+id integer primary key auto_increment,
+userid integer not null,
+hold_areaid integer not null,
+date_time varchar(100) not null,
+created_at varchar(100) not null
+
+);
+
+
+
+create table track_area(
+id integer primary key auto_increment,
+userid integer not null,
+scale_areaid integer not null,
+date_time varchar(100) not null,
+created_at varchar(100) not null
+
+);
+
+
+
+
+create table released_bales(
+id integer primary key auto_increment,
+userid integer not null,
+track_areaid integer not null,
+date_time varchar(100) not null,
+created_at varchar(100) not null
+);
